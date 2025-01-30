@@ -1,8 +1,89 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
-body{
-    background-color: aqua;
+
+main {
+    height: 100vh;
+    background: linear-gradient(90deg, red, rgb(82, 26, 26));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 15px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo */
+    padding: 40px 30px;
+    text-align: center;
+}
+
+img {
+    width: 250px; 
+    height: auto;
+    margin-top: -50px; 
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    margin-top: -35px;
+}
+
+label {
+    align-self: flex-start; /* Alinha os labels à esquerda */
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+p {
+    font-size: 14px;
+    margin: 15px 0;
+}
+
+p a {
+    color: red;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: darkred;
 }

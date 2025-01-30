@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    height: 100vh;
+    background: linear-gradient(90deg, red, rgb(82, 26, 26));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    position: relative; 
+    width: 470px;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 15px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.back-link {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: red;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    color: darkred;
+}
+
+img {
+    width: 200px; 
+    height: auto;
+    margin-top: -40px;
+}
+
+h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+    margin-top: -26px;
+}
+
+label {
+    align-self: flex-start; /* Alinha os labels à esquerda */
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 4px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+p {
+    font-size: 12px;
+    margin: 15px 0;
+}
+
+p a {
+    color: red;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    padding: 6px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    margin-bottom: -10px;
+}
+
+button:hover {
+    background-color: darkred;
+}
