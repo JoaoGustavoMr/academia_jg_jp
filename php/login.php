@@ -6,25 +6,37 @@ $login_erro = false;
 $logado_sucesso = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['email_login']) && isset($_POST['senha_login'])) {
+    if (!empty($_POST['email_login']) && !empty($_POST['senha_login'])) {
+        
+        $email_digitado = trim($_POST['email_login']);
+        $senha_digitado = trim($_POST['senha_login']);
 
-        $email_digitado = $_POST['email_login'];
-        $senha_digitado = $_POST['senha_login'];
-
-        $sql2 = "SELECT * FROM usuarios WHERE aluno_email = ?";
+        $sql2 = "SELECT * FROM usuarios WHERE email = ?";
         $stmt2 = $conexao->prepare($sql2);
+
+        if (!$stmt2) {
+            die("Erro na preparação da query: " . $conexao->error);
+        }
+
         $stmt2->bind_param("s", $email_digitado);
-        $stmt2->execute();
+        
+        if (!$stmt2->execute()) {
+            die("Erro na execução da query: " . $stmt2->error);
+        }
+
         $result2 = $stmt2->get_result();
 
-        if ($result2->num_rows == 1) {
+        if ($result2->num_rows === 1) {
             $usuario_logado = $result2->fetch_assoc();
 
-            if (password_verify($senha_digitado, $usuario_logado['aluno_senha'])) {
-                $_SESSION['nome_sessao'] = $usuario_logado['aluno_nome'];
+
+            if ($senha_digitado === $usuario_logado['senha']) {
+                $_SESSION['email_sessao'] = $usuario_logado['email'];
                 $_SESSION['id_sessao'] = $usuario_logado['id_usuario'];
+                $_SESSION['tipo_usuario'] = $usuario_logado['tipo_usuario']; 
+
                 $logado_sucesso = true;
-                header('location: inicio.php');
+                header('Location: inicio.php');
                 exit();
             } else {
                 $login_erro = true;
@@ -32,9 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $login_erro = true;
         }
+    } else {
+        $login_erro = true;
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -62,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Swal.fire({
                 icon: 'success',
                 title: 'Usuário logado com sucesso!',
-                text: 'Você será redirecionado para a página de dashboard.',
+                text: 'Você será redirecionado para a página inicial.',
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {

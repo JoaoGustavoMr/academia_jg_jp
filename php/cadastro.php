@@ -10,20 +10,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf_cadastro = $_POST['aluno_cpf'];
     $endereco_cadastro = $_POST['aluno_endereco'];
 
-    $senha_cadastro = password_hash($senha_cadastro, PASSWORD_DEFAULT);
-
-    $sql1 = "INSERT INTO usuarios (aluno_nome, aluno_email, aluno_senha, aluno_telefone, aluno_cpf, aluno_endereco) 
+    $sql1 = "INSERT INTO aluno (aluno_nome, aluno_email, aluno_senha, aluno_telefone, aluno_cpf, aluno_endereco) 
              VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($sql1);
     $stmt->bind_param('ssssss', $nome_cadastro, $email_cadastro, $senha_cadastro, $telefone_cadastro, $cpf_cadastro, $endereco_cadastro);
+    $stmt->execute();
 
-    if ($stmt->execute()) {
+    $aluno_cod = $conexao->insert_id;
+
+    $sql2 = "INSERT INTO usuarios (email, senha, aluno_cod) 
+             VALUES (?, ?, ?)";
+    $stmt2 = $conexao->prepare($sql2);
+    $stmt2->bind_param('sss', $email_cadastro, $senha_cadastro, $aluno_cod);
+    $stmt2->execute();
+
+    if ($stmt->affected_rows > 0 && $stmt2->affected_rows > 0) {
         $cadastro_sucesso = true;
     } else {
         $cadastro_sucesso = false;
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
