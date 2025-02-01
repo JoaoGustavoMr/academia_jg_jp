@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['tipo_usuario'] = $usuario_logado['tipo_usuario']; 
 
                 $logado_sucesso = true;
-                header('Location: index.php');
+                header('Location: inicio.php');
                 exit();
             } else {
                 $login_erro = true;

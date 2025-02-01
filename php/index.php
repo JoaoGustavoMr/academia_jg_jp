@@ -11,7 +11,7 @@ if (!isset($_SESSION['email_sessao'])) {
 $id_usuario = $_SESSION['id_sessao']; // Certifique-se de que esse valor está sendo armazenado corretamente na sessão
 
 // Verifica se o usuário é um aluno ou um instrutor
-$sql_verifica = "SELECT aluno_cod FROM aluno WHERE aluno_email = '{$_SESSION['email_sessao']}'";
+$sql_verifica = "SELECT aluno_cod FROM aluno WHERE aluno_email = '{$_SESSION['email_sessao']}'"; //select id usuario from usuario onde email = email sessao, acho q tem q ser isso
 $resultado_verifica = $conexao->query($sql_verifica);
 
 if ($resultado_verifica->num_rows > 0) {

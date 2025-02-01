@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(90deg, red, rgb(82, 26, 26));
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+nav a #logo-acad {
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 100px;
+    font-size: 22px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav #perfil-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+nav #perfil-logout a {
+    text-decoration: none;
+}
+
+nav #perfil-logout #perfil, nav #perfil-logout #logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+nav #perfil-logout h6 {
+    font-size: 15px;
+}
+
+nav #icon-perfil {
+    width: 80px;
+    height: 80px;
+}
+
+nav #icon-logout {
+    width: 50px;
+    height: 50px;
+}
+
+nav #entrar {
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover, nav #entrar:hover {
+    color: yellow;
+}
+
+main {
+    height: calc(100vh - 150px);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+main #textos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 800px
+}
+
+main #textos h1 {
+    font-size: 40px;
+}
+
+main #textos p {
+    font-size: 20px;
+}
+
+main #textos b {
+    color: red;
+}
+
+main #aulas {
+    background-color: aqua;
+}
+
+footer {
+    height: 200px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+footer h2 {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* main #banner-acad {
+    width: 100%;
+} */

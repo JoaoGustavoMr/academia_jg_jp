@@ -1,0 +1,22 @@
+h1 {
+    color: rgb(145, 194, 11);
+}
+
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed; /* Ou absolute se preferir */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/banner-acad.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com 50% de opacidade */
+    z-index: -1; /* Mantém a imagem atrás do conteúdo */
+}
