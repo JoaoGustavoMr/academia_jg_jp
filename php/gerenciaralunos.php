@@ -103,32 +103,36 @@ $resultado_aulas = $conexao->query($sql_aulas);
 </head>
 
 <body>
-    <header class="header">
-        <div class="container logo-menu">
-            <nav class="menu">
-                <ul class="nav-list">
-                    <li><a href="index.php"><img id="logo_gym"src="../img/logo-sem-fundo.png" alt=""></a></li>
-                    <li><a href="index.php">Início</a></li>
-                    <li><a href="gerenciaralunos.php">Aluno</a></li>
-                    <li><a href="gerenciarinstrutores.php">Instrutor</a></li>
+<header>
+        <nav>
+            <a href="inicio.php"><img id="logo-acad" src="../img/logo-sem-fundo.png" alt=""></a>
+            <ul>
+                <li><a href="inicio.php">Início</a></li>
+                <li><a href="aulas.php">Minhas aulas</a></li>
+                <li><a href="gerenciarinstrutores.php">Instrutores</a></li>
+                <li><a href="gerenciaralunos.php">Alunos</a></li>
+            </ul>
 
-                    <?php if (isset($_SESSION['id_sessao'])): ?>
-                        <div class="user-vector">
-                            <a href="perfil.php">
-                                <img id="logo-vector" src="../img/user-vector.png" alt="">
-                                <p>
-                                    <?= $_SESSION['email_sessao'] ?>
-                                </p>
-                            </a>
-                        </div>
-                        <li><img id="logout" src="../img/logout.png" alt="Logout" style="cursor: pointer;"></li>
-                    <?php else: ?>
-                        <li><a href="login.php">Entrar</a></li>
-                    <?php endif; ?>
-                    </a>
-                </ul>
-            </nav>
-        </div>
+            <?php if (isset($_SESSION['email_sessao'])): ?>
+                    <div id="perfil-logout">
+                        <a href="perfil.php">
+                            <div id="perfil">
+                                    <img id="icon-perfil" src="../img/user-vector.png" alt="">
+                                    <h6><?= $_SESSION['email_sessao'] ?></h6>
+                                    <h6><?= $_SESSION['tipo_usuario'] ?></h6>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div id="logout">
+                                <img id="icon-logout" src="../img/logout.png" alt="">
+                                <h6>Sair</h6>
+                            </div>
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <a id="entrar" href="index.php">Entrar</a>
+                <?php endif; ?>
+        </nav>
     </header>
     <main>
         <div id="container">

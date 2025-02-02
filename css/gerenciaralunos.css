@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 /* Reset básico */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -11,50 +15,91 @@ body {
     margin: 0;
     padding: 0;
 }
-.header {
-    background: linear-gradient(90deg, red, rgb(82, 26, 26));
-    margin-top: -60px;
-    height: 150px;
-}
 
-#logo_gym {
-    height: 200px;
-    width: 200px;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.menu ul {
-    list-style: none;
+nav {
+    height: 110px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    background: linear-gradient(90deg, red, rgb(82, 26, 26));
+    justify-content: center;
     align-items: center;
-    padding: 0;
+    gap: 100px;
+    transition: background 0.4s ease-in-out;
+}
+nav a #logo-acad {
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    padding-top: 10px;
 }
 
-.menu ul li {
-    display: inline;
-    margin: 0 15px;
+nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 100px;
+    font-size: 18px;
 }
 
-.menu ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    transition: color 0.3s ease-in-out;
 }
-
-.user-vector {
+nav ul li a:hover {
+    color: #ffcccb; 
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+nav #perfil-logout {
     display: flex;
+    justify-content: center;
     align-items: center;
+    gap: 50px;
 }
 
-#logo-vector, #logout {
-    width: 30px;
-    margin-left: 10px;
+nav #perfil-logout a {
+    text-decoration: none;
+}
+
+nav #perfil-logout #perfil, 
+nav #perfil-logout #logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+nav #perfil-logout #perfil:hover, 
+nav #perfil-logout #logout:hover {
+    transform: scale(1.1); 
+}
+nav #perfil-logout h6 {
+    font-size: 15px;
+}
+nav #icon-perfil {
+    width: 40px;
+    height: 40px;
+}
+
+nav #icon-logout {
+    width: 50px;
+    height: 50px;
+    margin-left: 7px;
+}
+nav #entrar {
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+nav #entrar:hover {
+    color: #ffcccb; 
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+nav ul li a:hover, nav #entrar:hover {
+    color: rgb(255, 255, 255);
 }
 
 .intro {

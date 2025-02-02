@@ -24,8 +24,8 @@ if (!isset($_SESSION['email_sessao'])) {
             <ul>
                 <li><a href="inicio.php">Início</a></li>
                 <li><a href="aulas.php">Minhas aulas</a></li>
-                <li><a href="">Instrutores</a></li>
-                <li><a href="">Alunos</a></li>
+                <li><a href="gerenciarinstrutores.php">Instrutores</a></li>
+                <li><a href="gerenciaralunos.php">Alunos</a></li>
             </ul>
 
             <?php if (isset($_SESSION['email_sessao'])): ?>
