@@ -10,7 +10,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: rgba(255, 246, 246, 0.789);
     color: #333;
     margin: 0;
     padding: 0;
@@ -103,7 +103,7 @@ nav ul li a:hover, nav #entrar:hover {
 }
 main {
     height: calc(100vh - 150px);
-    background-color: white;
+    background-color: rgb(252, 245, 245);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,17 +128,15 @@ main #textos p {
 main #textos b {
     color: red;
 }
-
-main #img-acad {
-    width: 800px;
-}
+/* Container fixo */
 .tabela-container {
     display: flex;
     justify-content: center;
-    margin-top: 50px; 
+    margin-top: 50px;
     width: 100%;
-    max-width: 700px; 
-    max-height: 500px;
+    max-width: 700px;
+    height: 400px;  
+    overflow: hidden; 
 }
 
 .tabela {
@@ -147,8 +145,9 @@ main #img-acad {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 100%;
+    height: 100%;
+    overflow-y: auto; 
     text-align: center;
-    max-height: 800px;
 }
 table {
     width: 100%;
@@ -164,16 +163,10 @@ th, td {
     padding: 10px;
     border: 1px solid #ddd;
 }
-
-@media (max-width: 768px) {
-    .tabela-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .tabela {
-        width: 90%;
-    }
+#titulo_tabela{
+    font-size: 27px;
+    margin-left: 95px;
+    margin-bottom: -40px;
 }
 a {
     color: #c51b08; 
@@ -264,6 +257,41 @@ td button {
 }
 button:focus {
     outline: none;
+}
+main {
+    height: calc(100vh - 150px);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+#container2 #textos {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 400px;
+    margin-left: 700px;
+    margin-top: -330px;
+}
+
+#container2 #textos h1{
+    font-size: 40px;
+}
+
+#container2 #textos p{
+    font-size: 20px;
+}
+
+#container2 #textos b{
+    color: red;
+}
+#container2 img{
+    height: 320px;
+    width: 500px;
+    margin-top: 100px;
+    margin-left: 100px;
 }
 footer {
     height: 200px;
