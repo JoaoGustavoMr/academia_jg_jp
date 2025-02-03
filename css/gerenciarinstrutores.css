@@ -293,6 +293,97 @@ button:focus {
     margin-top: 100px;
     margin-left: 100px;
 }
+/* Estilo para o modal de criar novo instrutor */
+#modal-criar {
+    display: none; /* Inicialmente escondido */
+    position: fixed; /* Modal fixado na tela */
+    z-index: 1000; /* Coloca o modal acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ocupa toda a largura da tela */
+    height: 100%; /* Ocupa toda a altura da tela */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+}
+
+/* Conteúdo do modal */
+#modal-criar .modal-content {
+    background-color: #fff;
+    margin: auto; /* Centraliza o modal */
+    padding: 15px;
+    border-radius: 8px;
+    width: 70%; /* Menor largura */
+    max-width: 500px; /* Limita o tamanho máximo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%; /* Posiciona no meio verticalmente */
+    left: 50%; /* Posiciona no meio horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste para centralização exata */
+}
+
+/* Fechar o modal (×) */
+#modal-criar .close {
+    color: #aaa;
+    font-size: 24px; /* Tamanho do ícone de fechar menor */
+    font-weight: bold;
+    position: absolute;
+    right: 15px; /* Ajustado para ficar mais próximo da borda */
+    top: 15px;
+    cursor: pointer;
+}
+
+#modal-criar .close:hover,
+#modal-criar .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Título do modal */
+#modal-criar h3 {
+    text-align: center;
+    font-size: 20px; /* Reduzido o tamanho do título */
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Formulário dentro do modal */
+#modal-criar form {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-criar label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px; /* Diminuído o tamanho da fonte do label */
+}
+
+#modal-criar input,
+#modal-criar select {
+    padding: 10px; /* Menos padding nos inputs */
+    margin-bottom: 10px; /* Menos espaço entre os inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Tamanho da fonte reduzido */
+    width: 100%;
+}
+
+/* Botão de envio no modal */
+#modal-criar button {
+    background-color: #c40202;
+    color: white;
+    padding: 12px; /* Menos padding no botão */
+    font-size: 14px; /* Menor tamanho de fonte */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#modal-criar button:hover {
+    background-color: #ff0000;
+}
+
 footer {
     height: 200px;
     background-color: black;

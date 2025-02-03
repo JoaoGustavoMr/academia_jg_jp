@@ -42,7 +42,7 @@ $resultado_aluno = $conexao->query($sql_alunos);
                         <h6><?= $_SESSION['tipo_usuario'] ?></h6>
                     </div>
                 </a>
-                <a href="">
+                <a href="#" onclick="confirmarSaida();">
                     <div id="logout">
                         <img id="icon-logout" src="../img/logout.png" alt="">
                         <h6>Sair</h6>
@@ -54,7 +54,6 @@ $resultado_aluno = $conexao->query($sql_alunos);
         <?php endif; ?>
     </nav>
 </header>
-
 <main>
     <div id="textos">
         <h1>Nosso Time de Alunos<br></h1>
@@ -217,8 +216,22 @@ $resultado_aluno = $conexao->query($sql_alunos);
             });
         }
     });
+    function confirmarSaida() {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: "Você quer sair de sua conta?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sair',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redireciona para o logout
+                    window.location.href = 'logout.php';
+                }
+            });
+        }
 </script>
-
-
 </body>
 </html>

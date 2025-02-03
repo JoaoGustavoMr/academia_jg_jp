@@ -6,7 +6,6 @@ if (!isset($_SESSION['email_sessao'])) {
     header('Location: login.php');
     exit();
 }
-
 $id_usuario = $_SESSION['id_sessao']; 
 
 $sql_instrutor = 'SELECT * FROM instrutor';
@@ -42,7 +41,7 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
                         <h6><?= $_SESSION['tipo_usuario'] ?></h6>
                     </div>
                 </a>
-                <a href="logout.php">
+                <a href="#" onclick="confirmarSaida();">
                     <div id="logout">
                         <img id="icon-logout" src="../img/logout.png" alt="">
                         <h6>Sair</h6>
@@ -54,7 +53,6 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
         <?php endif; ?>
     </nav>
 </header>
-
 <main>
     <div id="textos">
         <h1>Conheça Nossos Instrutores - <br> A Equipe Que Vai Transformar Seu Treino!</h1>
@@ -65,37 +63,49 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
     <div id="container">
         <h3 id="titulo_tabela">Instrutores Cadastrados</h3>
         <div class="tabela-container">
-            <div class="tabela">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome do Usuário</th>
-                            <th>Especialidade</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if ($resultado_instrutor->num_rows > 0) {
-                            while ($linha = $resultado_instrutor->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($linha['instrutor_nome']) . "</td>";
-                                echo "<td>" . htmlspecialchars($linha['instrutor_especialidade']) . "</td>";
-                                if ($_SESSION['tipo_usuario'] == 'Instrutor') {
-                                echo "<td>
-                                        <button class='editar-btn' data-id='" . $linha['instrutor_cod'] . "' data-nome='" . htmlspecialchars($linha['instrutor_nome']) . "' data-especialidade='" . htmlspecialchars($linha['instrutor_especialidade']) . "'>Editar</button>
-                                        <button class='excluir-btn' data-id='" . $linha['instrutor_cod'] . "'>Excluir</button>
-                                      </td>";
-                                } else {
-                                        echo "<td>Sem permissão</td>";
-                                   }
-                            }
+    <div class="tabela">
+        <table>
+            <thead>
+                <?php if ($_SESSION['tipo_usuario'] == 'Instrutor'): ?>
+                    <!-- Linha para o botão de criação, visível apenas para instrutores -->
+                    <tr>
+                        <th colspan="3">
+                            <button id="abrir-form" class="btn-criar-instrutor">Criar Novo Instrutor</button>
+                        </th>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <th>Nome do Usuário</th>
+                    <th>Especialidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($resultado_instrutor->num_rows > 0) {
+                    while ($linha = $resultado_instrutor->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($linha['instrutor_nome']) . "</td>";
+                        echo "<td>" . htmlspecialchars($linha['instrutor_especialidade']) . "</td>";
+                        if ($_SESSION['tipo_usuario'] == 'Instrutor') {
+                            // Para instrutores, mostrar as opções de editar e excluir
+                            echo "<td>
+                                    <button class='editar-btn' data-id='" . $linha['instrutor_cod'] . "' data-nome='" . htmlspecialchars($linha['instrutor_nome']) . "' data-especialidade='" . htmlspecialchars($linha['instrutor_especialidade']) . "'>Editar</button>
+                                    <button class='excluir-btn' data-id='" . $linha['instrutor_cod'] . "'>Excluir</button>
+                                  </td>";
                         } else {
-                            echo "<tr><td colspan='3'>Nenhum usuário encontrado.</td></tr>";
-                        } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            // Para alunos, mostrar apenas "Sem permissão" ou uma célula vazia
+                            echo "<td>Sem permissão</td>";
+                        }
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>Nenhum usuário encontrado.</td></tr>";
+                } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
     </div>
 </main>
 
@@ -132,7 +142,34 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
         </form>
     </div>
 </div>
+<!-- Modal para criar o instrutor -->
+<div id="modal-criar" class="modal">
+    <div class="modal-content">
+        <span class="close" id="fechar-modal">&times;</span>
+        <h3>Criar Novo Instrutor</h3>
+        <form method="POST" action="criar_instrutor.php">
+            <label for="nome-criar">Nome:</label>
+            <input type="text" name="nome" id="nome-criar" required>
 
+            <label for="especialidade-criar">Especialidade:</label>
+            <select name="especialidade" id="especialidade-criar" required>
+                <option value="Yoga">Yoga</option>
+                <option value="Musculação">Musculação</option>
+                <option value="Crossfit">Crossfit</option>
+                <option value="Zumba">Zumba</option>
+                <option value="Calistenia">Calistenia</option>
+            </select>
+
+            <label for="email-criar">Email:</label>
+            <input type="email" name="email" id="email-criar" required>
+
+            <label for="senha-criar">Senha:</label>
+            <input type="password" name="senha" id="senha-criar" required>
+
+            <button type="submit" name="criar">Criar</button>
+        </form>
+    </div>
+</div>
 <footer>
     <h2>Desenvolvido por:</h2>
     <a href="https://www.linkedin.com/in/jo%C3%A3o-gustavo-mota-ramos-9b60242a2/" target="_blank">João Gustavo Mota Ramos</a>
@@ -183,6 +220,38 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
             document.getElementById('modal-editar').style.display = 'none';
         }
     }
+    // Abrir o modal
+document.getElementById('abrir-form').addEventListener('click', function() {
+    document.getElementById('modal-criar').style.display = 'block';
+});
+
+// Fechar o modal
+document.getElementById('fechar-modal').addEventListener('click', function() {
+    document.getElementById('modal-criar').style.display = 'none';
+});
+
+// Fechar o modal se clicar fora dele
+window.onclick = function(event) {
+    if (event.target == document.getElementById('modal-criar')) {
+        document.getElementById('modal-criar').style.display = 'none';
+    }
+}
+function confirmarSaida() {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: "Você quer sair de sua conta?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sair',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redireciona para o logout
+                    window.location.href = 'logout.php';
+                }
+            });
+        }
 </script>
 </body>
 </html>

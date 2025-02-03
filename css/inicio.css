@@ -1,21 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Reset básico */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
 nav {
     height: 110px;
     display: flex;
@@ -44,6 +34,8 @@ nav ul li a {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
+    font-weight: 700; /* Deixa o texto em negrito */
+
 }
 nav ul li a:hover {
     color: #ffcccb; 
@@ -104,7 +96,7 @@ nav ul li a:hover, nav #entrar:hover {
 
 main {
     height: calc(100vh - 150px);
-    background-color: white;
+    background-color: rgb(224, 224, 224);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,8 +122,145 @@ main #textos b {
 }
 
 main #img-acad {
-    width: 800px;
+    width: 500px;
 }
+/* Seção de Benefícios */
+.benefits {
+    max-width: 100%;
+    background-color: rgb(55, 55, 55); /* Fundo todo preto */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.benefits h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* Layout Responsivo e Expansível */
+.benefits-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta dinamicamente */
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Estilo dos Blocos Individuais */
+.benefit {
+    background-color: #1a1a1a; /* Preto mais claro */
+    padding: 25px;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+    text-align: left;
+    box-shadow: 7px 7px 10px rgba(255, 0, 0, 0.5);
+}
+
+.benefit:hover {
+    transform: scale(1.05);
+}
+
+/* Ícones Destacados */
+.icon {
+    font-size: 35px;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo mais sutil */
+    color: white; /* Ícones brancos */
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+
+/* Texto Bem Destacado */
+.benefit h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.benefit p {
+    font-size: 16px;
+    color: #ddd; /* Branco mais suave */
+}
+.planos {
+    background-color: rgb(204, 204, 204);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.planos h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+}
+
+.planos-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.plano {
+    background: #1a1a1a;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.plano:hover {
+    transform: scale(1.05);
+}
+
+.plano h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.plano .preco {
+    font-size: 22px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+}
+
+.plano ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.plano ul li {
+    font-size: 16px;
+    margin: 8px 0;
+    padding-left: 20px; /* Garante que todos os itens fiquem alinhados da mesma forma */
+}
+
+.plano button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+.plano button:hover {
+    background: darkred;
+}
+
 
 footer {
     height: 200px;
