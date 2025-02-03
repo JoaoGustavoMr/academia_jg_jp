@@ -114,6 +114,35 @@ $resultado_testando = $conexao->query($sql_testando);
                             }
                         } ?>
         </div>
+
+        <!-- ULTIMA MENSAGEM GPT -->
+
+        <button id="btnAdicionarAula" class="btn btn-primary">Adicionar Aula</button>
+
+        <div id="modalAdicionarAula" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Adicionar Nova Aula</h2>
+        <form id="formAdicionarAula">
+            <label for="dataAula">Data:</label>
+            <input type="date" id="dataAula" name="dataAula" required>
+
+            <label for="instrutor">Instrutor:</label>
+            <select id="instrutor" name="instrutor" required></select>
+
+            <label for="aluno">Aluno:</label>
+            <select id="aluno" name="aluno" required></select>
+
+            <label for="tipoAula">Tipo de Aula:</label>
+            <input type="text" id="tipoAula" name="tipoAula" readonly>
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>
+
+        <!-- ULTIMA MSG GPT -->
+
     </main>
     <footer>
         <h2>Desenvolvido por:</h2>

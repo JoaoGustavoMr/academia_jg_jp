@@ -87,3 +87,80 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+
+
+
+// ABAIXO DAQUI FOI O QUE O GPT MANDOU NA ULTIMA MSG
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const btnAdicionarAula = document.getElementById("btnAdicionarAula");
+    const modalAdicionarAula = document.getElementById("modalAdicionarAula");
+    const closeModal = document.querySelector(".close");
+    const formAdicionarAula = document.getElementById("formAdicionarAula");
+
+    btnAdicionarAula.addEventListener("click", function () {
+        fetch("obter_dados_usuario.php")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("instrutor").innerHTML = "";
+                document.getElementById("aluno").innerHTML = "";
+
+                if (data.tipo_usuario === "instrutor") {
+                    // Instrutor só pode ser ele mesmo
+                    document.getElementById("instrutor").innerHTML = `<option value="${data.usuario_id}" selected>${data.nome}</option>`;
+
+                    // Listar todos os alunos
+                    data.alunos.forEach(aluno => {
+                        document.getElementById("aluno").innerHTML += `<option value="${aluno.id}">${aluno.nome}</option>`;
+                    });
+
+                    document.getElementById("tipoAula").value = data.especialidade;
+                } else {
+                    // Aluno só pode ser ele mesmo
+                    document.getElementById("aluno").innerHTML = `<option value="${data.usuario_id}" selected>${data.nome}</option>`;
+
+                    // Listar todos os instrutores
+                    data.instrutores.forEach(instrutor => {
+                        document.getElementById("instrutor").innerHTML += `<option value="${instrutor.id}" data-especialidade="${instrutor.especialidade}">${instrutor.nome}</option>`;
+                    });
+
+                    // Atualiza o tipo de aula ao escolher um instrutor
+                    document.getElementById("instrutor").addEventListener("change", function () {
+                        const especialidade = this.options[this.selectedIndex].getAttribute("data-especialidade");
+                        document.getElementById("tipoAula").value = especialidade;
+                    });
+                }
+
+                modalAdicionarAula.style.display = "block";
+            });
+    });
+
+    closeModal.addEventListener("click", function () {
+        modalAdicionarAula.style.display = "none";
+    });
+
+    formAdicionarAula.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(formAdicionarAula);
+
+        fetch("adicionar_aula.php", {
+            method: "POST",
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.sucesso) {
+                Swal.fire("Sucesso!", "A aula foi adicionada!", "success")
+                    .then(() => location.reload());
+            } else {
+                Swal.fire("Erro!", "Não foi possível adicionar a aula.", "error");
+            }
+        });
+    });
+});
