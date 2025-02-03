@@ -10,22 +10,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf_cadastro = $_POST['aluno_cpf'];
     $endereco_cadastro = $_POST['aluno_endereco'];
 
-    $sql1 = "INSERT INTO aluno (aluno_nome, aluno_email, aluno_senha, aluno_telefone, aluno_cpf, aluno_endereco) 
-             VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conexao->prepare($sql1);
-    $stmt->bind_param('ssssss', $nome_cadastro, $email_cadastro, $senha_cadastro, $telefone_cadastro, $cpf_cadastro, $endereco_cadastro);
-    $stmt->execute();
+    // 1. Insere primeiro na tabela 'usuarios'
+    $sql1 = "INSERT INTO usuarios (email, senha, tipo_usuario) VALUES (?, ?, 'Aluno')";
+    $stmt1 = $conexao->prepare($sql1);
+    $stmt1->bind_param('ss', $email_cadastro, $senha_cadastro);
+    $stmt1->execute();
 
-    $aluno_cod = $conexao->insert_id;
+    if ($stmt1->affected_rows > 0) {
+        $usuario_id = $conexao->insert_id; // Pega o ID do usuário recém-criado
 
-    $sql2 = "INSERT INTO usuarios (email, senha, aluno_cod) 
-             VALUES (?, ?, ?)";
-    $stmt2 = $conexao->prepare($sql2);
-    $stmt2->bind_param('sss', $email_cadastro, $senha_cadastro, $aluno_cod);
-    $stmt2->execute();
+        // 2. Insere na tabela 'aluno' com o fk_usuario_id correto
+        $sql2 = "INSERT INTO aluno (aluno_nome, aluno_email, aluno_senha, aluno_telefone, aluno_cpf, aluno_endereco, fk_usuario_id) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt2 = $conexao->prepare($sql2);
+        $stmt2->bind_param('ssssssi', $nome_cadastro, $email_cadastro, $senha_cadastro, $telefone_cadastro, $cpf_cadastro, $endereco_cadastro, $usuario_id);
+        $stmt2->execute();
 
-    if ($stmt->affected_rows > 0 && $stmt2->affected_rows > 0) {
-        $cadastro_sucesso = true;
+        if ($stmt2->affected_rows > 0) {
+            $cadastro_sucesso = true;
+        } else {
+            $cadastro_sucesso = false;
+        }
     } else {
         $cadastro_sucesso = false;
     }

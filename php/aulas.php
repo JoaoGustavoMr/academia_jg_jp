@@ -8,19 +8,39 @@ if (!isset($_SESSION['email_sessao'])) {
 }
 
 $id_usuario = $_SESSION['id_sessao'];
+$id_usuario_tipo = $_SESSION['id_tipo']; // Agora temos o ID correto
 
 $sql_teste = "SELECT id_usuario FROM usuarios WHERE email = '{$_SESSION['email_sessao']}'";
 $resultado_teste = $conexao->query($sql_teste);
 
 if ($resultado_teste->num_rows > 0) {
+    // $sql_testando = "SELECT a.aula_data, a.aula_tipo, a.aula_cod,
+    //             i.instrutor_nome AS instrutor_nome, 
+    //             al.aluno_nome AS aluno_nome
+    //     FROM aula a
+    //     JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod
+    //     JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod
+    //     WHERE a.fk_aluno_cod = '$id_usuario'
+    //     ORDER BY a.aula_data ASC";
+
+    // $sql_testando = "SELECT a.aula_data, a.aula_tipo, a.aula_cod,
+    // i.instrutor_nome AS instrutor_nome, 
+    // al.aluno_nome AS aluno_nome
+    // FROM aula a
+    // LEFT JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod
+    // LEFT JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod
+    // WHERE a.fk_aluno_cod = '$id_usuario' OR a.fk_instrutor_cod = '$id_usuario'
+    // ORDER BY a.aula_data ASC";
+
     $sql_testando = "SELECT a.aula_data, a.aula_tipo, a.aula_cod,
-                i.instrutor_nome AS instrutor_nome, 
-                al.aluno_nome AS aluno_nome
-        FROM aula a
-        JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod
-        JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod
-        WHERE a.fk_aluno_cod = '$id_usuario'
-        ORDER BY a.aula_data ASC";
+                            i.instrutor_nome AS instrutor_nome, 
+                            al.aluno_nome AS aluno_nome
+                    FROM aula a
+                    LEFT JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod
+                    LEFT JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod
+                    WHERE a.fk_aluno_cod = '$id_usuario_tipo' OR a.fk_instrutor_cod = '$id_usuario_tipo'
+                    ORDER BY a.aula_data ASC";
+
 }
 
 $resultado_testando = $conexao->query($sql_testando);
@@ -33,6 +53,7 @@ $resultado_testando = $conexao->query($sql_testando);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/aulas.css">
     <script src="../js/aulas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Minhas aulas</title>
 </head>
 <body>
@@ -75,13 +96,13 @@ $resultado_testando = $conexao->query($sql_testando);
         <div id="aulas">
             <?php if ($resultado_testando->num_rows > 0) {
                             while ($linha = $resultado_testando->fetch_assoc()) {
-                                echo "<div>";
+                                echo "<div class='aula'>";
                                 echo "<ul>";
-                                echo "<li>Data: " . $linha['aula_data'] . "</li>";
-                                echo "<li>Instrutor: " . $linha['instrutor_nome'] . "</li>";
-                                echo "<li>Aluno: " . $linha['aluno_nome'] . "</li>";
-                                echo "<li>Tipo da aula: " . $linha['aula_tipo'] . "</li>";
-                                echo "<li><button class='editar' data-id='" . $linha['aula_cod'] . "' 
+                                echo "<li><b>Data: </b>" . $linha['aula_data'] . "</li>";
+                                echo "<li><b>Instrutor: </b>" . $linha['instrutor_nome'] . "</li>";
+                                echo "<li><b>Aluno: </b>" . $linha['aluno_nome'] . "</li>";
+                                echo "<li><b>Tipo da aula: </b>" . $linha['aula_tipo'] . "</li>";
+                                echo "<li id='botoes'><button class='editar' data-id='" . $linha['aula_cod'] . "' 
                                     data-aulaData='" . $linha['aula_data'] . "' 
                                     data-aulaTipo='" . $linha['aula_tipo'] . "' 
                                     data-instrutorNome='" . $linha['instrutor_nome'] . "' 

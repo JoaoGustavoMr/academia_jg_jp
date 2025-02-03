@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email_digitado = trim($_POST['email_login']);
         $senha_digitado = trim($_POST['senha_login']);
 
+        // Busca o usuário pelo email
         $sql2 = "SELECT * FROM usuarios WHERE email = ?";
         $stmt2 = $conexao->prepare($sql2);
 
@@ -29,11 +30,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result2->num_rows === 1) {
             $usuario_logado = $result2->fetch_assoc();
 
-
+            // Verifica a senha
             if ($senha_digitado === $usuario_logado['senha']) {
                 $_SESSION['email_sessao'] = $usuario_logado['email'];
-                $_SESSION['id_sessao'] = $usuario_logado['id_usuario'];
-                $_SESSION['tipo_usuario'] = $usuario_logado['tipo_usuario']; 
+                $_SESSION['id_sessao'] = $usuario_logado['id_usuario']; //isso tá correto, é reconhecido
+                $_SESSION['tipo_usuario'] = $usuario_logado['tipo_usuario']; //também correto, exibiu aluno
+                $_SESSION['id_tipo'] = "";
+                // var_dump($usuario_logado['tipo_usuario']);
+                var_dump($usuario_logado['id_usuario']);
+
+                // $_SESSION['tipo_usuario'] = $usuario_logado['tipo_usuario'];  id tipo aqui?
+
+                // Verifica se o usuário é instrutor ou aluno e armazena o ID correto
+                if ($usuario_logado['tipo_usuario'] === 'Instrutor') {
+                    $sql_instrutor = "SELECT instrutor_cod FROM instrutor WHERE fk_usuario_id = ?"; //selecionar id de instrutor de quem tem o id de usuario da conta logada
+                    $stmt_instrutor = $conexao->prepare($sql_instrutor);
+                    $stmt_instrutor->bind_param("i", $usuario_logado['id_usuario']);
+                    $stmt_instrutor->execute();
+                    $result_instrutor = $stmt_instrutor->get_result();
+
+                    var_dump($result_instrutor->num_rows);
+                    
+                    if ($result_instrutor->num_rows === 1) { //nao ta entrando nesse if?
+                        $dados_instrutor = $result_instrutor->fetch_assoc();
+                        $_SESSION['id_tipo'] = $dados_instrutor['instrutor_cod']; // ID correto do instrutor
+                    }
+                } elseif ($usuario_logado['tipo_usuario'] === 'Aluno') {
+                    $sql_aluno = "SELECT aluno_cod FROM aluno WHERE fk_usuario_id = ?";
+                    $stmt_aluno = $conexao->prepare($sql_aluno);
+                    $stmt_aluno->bind_param("i", $usuario_logado['id_usuario']);
+                    $stmt_aluno->execute();
+                    $result_aluno = $stmt_aluno->get_result();
+
+                    var_dump($result_aluno->num_rows);
+                    
+                    if ($result_aluno->num_rows === 1) {  //nao ta entrando nesse if?
+                        $dados_aluno = $result_aluno->fetch_assoc();
+                        $_SESSION['id_tipo'] = $dados_aluno['aluno_cod']; // ID correto do aluno
+                    }
+                }
 
                 $logado_sucesso = true;
                 header('Location: inicio.php');
@@ -49,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt">

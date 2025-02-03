@@ -109,7 +109,37 @@ main #textos b {
 }
 
 main #aulas {
-    background-color: aqua;
+    display: flex;
+    gap: 20px;
+}
+
+.aula {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    border: 2px solid red;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.aula ul {
+    list-style-type: none;
+}
+
+#botoes {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.editar, .excluir {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 footer {
