@@ -2,9 +2,6 @@
 session_start();
 require_once 'conexao.php';
 
-$sql_instrutor = 'SELECT * FROM instrutor';
-$resultado_instrutor = $conexao->query($sql_instrutor);
-
 if (!isset($_SESSION['email_sessao'])) {
     header('Location: login.php');
     exit();
@@ -12,31 +9,8 @@ if (!isset($_SESSION['email_sessao'])) {
 
 $id_usuario = $_SESSION['id_sessao']; 
 
-$sql_verifica = "SELECT aluno_cod FROM aluno WHERE aluno_email = '{$_SESSION['email_sessao']}'";
-$resultado_verifica = $conexao->query($sql_verifica);
-
-if ($resultado_verifica->num_rows > 0) {
-    $sql_aulas = "SELECT a.aula_data, a.aula_tipo, a.aula_cod,
-                i.instrutor_nome AS instrutor_nome, 
-                al.aluno_nome AS aluno_nome
-        FROM aula a
-        JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod
-        JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod
-        WHERE a.fk_aluno_cod = '$id_usuario'
-        ORDER BY a.aula_data ASC";
-} else {
-    // Usuário é um instrutor
-    $sql_aulas = "SELECT a.aula_data, a.aula_tipo, a.aula_cod,
-                i.instrutor_nome AS instrutor_nome, 
-                al.aluno_nome AS aluno_nome
-        FROM aula a
-        JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod
-        JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod
-        WHERE a.fk_instrutor_cod = '$id_usuario'
-        ORDER BY a.aula_data ASC";
-}
-
-$resultado_aulas = $conexao->query($sql_aulas);
+$sql_instrutor = 'SELECT * FROM instrutor';
+$resultado_instrutor = $conexao->query($sql_instrutor);
 ?>
 
 <!DOCTYPE html>
@@ -106,11 +80,14 @@ $resultado_aulas = $conexao->query($sql_aulas);
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($linha['instrutor_nome']) . "</td>";
                                 echo "<td>" . htmlspecialchars($linha['instrutor_especialidade']) . "</td>";
+                                if ($_SESSION['tipo_usuario'] == 'Instrutor') {
                                 echo "<td>
                                         <button class='editar-btn' data-id='" . $linha['instrutor_cod'] . "' data-nome='" . htmlspecialchars($linha['instrutor_nome']) . "' data-especialidade='" . htmlspecialchars($linha['instrutor_especialidade']) . "'>Editar</button>
                                         <button class='excluir-btn' data-id='" . $linha['instrutor_cod'] . "'>Excluir</button>
                                       </td>";
-                                echo "</tr>";
+                                } else {
+                                        echo "<td>Sem permissão</td>";
+                                   }
                             }
                         } else {
                             echo "<tr><td colspan='3'>Nenhum usuário encontrado.</td></tr>";

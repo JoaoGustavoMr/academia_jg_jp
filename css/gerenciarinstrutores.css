@@ -195,19 +195,28 @@ td a {
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    position: relative; /* Isso faz com que os elementos filhos (como .close) fiquem dentro dele */
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 0);
     padding: 20px;
     border-radius: 10px;
     width: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
     position: absolute;
     top: 10px;
     right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
 }
 
 .close:hover,
@@ -258,15 +267,6 @@ td button {
 button:focus {
     outline: none;
 }
-main {
-    height: calc(100vh - 150px);
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-}
-
 #container2 #textos {
     display: flex;
     flex-direction: column;
