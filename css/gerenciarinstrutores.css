@@ -497,7 +497,17 @@ footer a:hover {
     nav ul {
         gap: 30px;
         font-size: 16px;
+        margin-left: -0px;
     }
+
+    nav #logo-acad {
+        margin-left: -0px;
+    }
+
+    nav #perfil-logout {
+        margin-left: -0px;
+    }
+
     main {
         flex-direction: column; /* Agora os itens ficam um em cima do outro */
         gap: 30px;
@@ -507,7 +517,25 @@ footer a:hover {
     }
     main #textos {
         width: 90%;
+        margin-top: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
     }
+
+    main #textos h1 {
+        width: 350px;
+        margin-left: 100px;
+        text-align: center;
+    }
+
+    main #textos p {
+        width: 70%;
+        margin-left: 100px;
+    }
+
     main #aulas {
         flex-direction: column;
         align-items: center;
@@ -516,6 +544,23 @@ footer a:hover {
     .aula {
         width: 80%;
     }
+
+    #titulo_tabela {
+        margin-left: 0px;
+        font-size: 22px;
+    }
+
+    .tabela {
+        width: 150%;
+        margin-left: -150px;
+        overflow-x: auto;
+    }
+
+    .tabela .btn-criar-instrutor {
+        margin-left: 150px;
+    }
+
+
     #container2 {
         flex-direction: column; /* Alinha os elementos um em cima do outro */
         text-align: center;
@@ -526,6 +571,14 @@ footer a:hover {
         margin-top: 20px;
         width: 90%;
         max-width: 500px;
+    }
+
+    footer {
+        margin-top: 800px;
+    }
+
+    footer h2, footer a {
+        margin-left: 0px;
     }
 }
 
