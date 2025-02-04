@@ -34,13 +34,11 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
 
         <?php if (isset($_SESSION['email_sessao'])): ?>
             <div id="perfil-logout">
-                <a href="perfil.php">
-                    <div id="perfil">
-                        <img id="icon-perfil" src="../img/user-vector.png" alt="">
-                        <h6><?= $_SESSION['email_sessao'] ?></h6>
-                        <h6><?= $_SESSION['tipo_usuario'] ?></h6>
-                    </div>
-                </a>
+                <div id="perfil">
+                    <img id="icon-perfil" src="../img/user-vector.png" alt="">
+                    <h6><?= $_SESSION['email_sessao'] ?></h6>
+                    <h6><?= $_SESSION['tipo_usuario'] ?></h6>
+                </div>
                 <a href="#" onclick="confirmarSaida();">
                     <div id="logout">
                         <img id="icon-logout" src="../img/logout.png" alt="">
@@ -75,7 +73,7 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
                     </tr>
                 <?php endif; ?>
                 <tr>
-                    <th>Nome do Usuário</th>
+                    <th>Nome</th>
                     <th>Especialidade</th>
                     <th>Ações</th>
                 </tr>
@@ -108,17 +106,6 @@ $resultado_instrutor = $conexao->query($sql_instrutor);
 
     </div>
 </main>
-
-<div id="container2">
-    <div id="instrutores">
-        <img src="../img/instrutor.jpg" alt="">
-    </div>
-    <div id="textos">
-        <h1>O Guia Perfeito Para Sua Jornada Fitness!</h1>
-        <p>Por trás de cada conquista existe um mentor dedicado. Nossos instrutores não apenas montam treinos, eles acompanham sua evolução, corrigem movimentos e te motivam a ir além.   
-        <br><br>Com uma abordagem personalizada e focada nos seus objetivos, eles fazem toda a diferença na sua rotina. <b>Treine com quem entende e alcance resultados reais na Alpha Gym! <i class="bi bi-barbell"></i></b></p>
-    </div> 
-</div>
 
 <div id="modal-editar" class="modal">
     <div class="modal-content">

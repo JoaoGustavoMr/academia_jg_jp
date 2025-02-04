@@ -35,13 +35,11 @@ $resultado_aluno = $conexao->query($sql_alunos);
 
         <?php if (isset($_SESSION['email_sessao'])): ?>
             <div id="perfil-logout">
-                <a href="perfil.php">
-                    <div id="perfil">
-                        <img id="icon-perfil" src="../img/user-vector.png" alt="">
-                        <h6><?= $_SESSION['email_sessao'] ?></h6>
-                        <h6><?= $_SESSION['tipo_usuario'] ?></h6>
-                    </div>
-                </a>
+                <div id="perfil">
+                    <img id="icon-perfil" src="../img/user-vector.png" alt="">
+                    <h6><?= $_SESSION['email_sessao'] ?></h6>
+                    <h6><?= $_SESSION['tipo_usuario'] ?></h6>
+                </div>
                 <a href="#" onclick="confirmarSaida();">
                     <div id="logout">
                         <img id="icon-logout" src="../img/logout.png" alt="">
@@ -101,15 +99,6 @@ $resultado_aluno = $conexao->query($sql_alunos);
         </div>
     </div>
 </main>
-<div id="container2">
-        <div id="instrutores">
-            <img src="../img/alunos_acad.jpg" alt="">
-        </div>
-        <div id="textos">
-    <h1>Transforme Sua Vida na Alpha Gym!</h1>
-    <p>Na Alpha Gym, cada aluno é único. Com treinos personalizados e acompanhamento contínuo, ajudamos você a alcançar seus objetivos, seja para ganhar força, perder peso ou melhorar sua saúde. 
-    <br><br>Venha descobrir seu potencial e evoluir com a gente, em um ambiente motivador e acolhedor. <b>Junte-se à nossa comunidade e alcance resultados reais! <i class="bi bi-person"></i></b></p>
-</div>
 
 <!-- Modal de Editar -->
 <div id="modal-editar" class="modal">

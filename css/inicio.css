@@ -291,3 +291,85 @@ footer a:hover {
 /* main #banner-acad {
     width: 100%;
 } */
+
+@media (max-width: 430px) { 
+    nav {
+        height: 300px;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    nav a #logo-acad {
+        width: 120px;
+        height: 120px;
+        padding-top: 5px;
+    }
+
+    nav ul {
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    nav ul li a {
+        font-weight: 600;
+    }
+
+    nav #perfil-logout {
+        gap: 20px;
+    }
+
+    nav #icon-perfil,
+    nav #icon-logout {
+        width: 30px;
+        height: 30px;
+    }
+
+    main {
+        height: auto;
+        flex-direction: column;
+        padding: 30px 15px;
+        text-align: center;
+    }
+
+    main #textos {
+        width: 100%;
+    }
+
+    main #textos h1 {
+        font-size: 30px;
+    }
+
+    main #textos p {
+        font-size: 18px;
+    }
+
+    main #img-acad {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .benefits {
+        padding: 40px 10px;
+    }
+
+    .benefits-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .planos-container {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .plano {
+        width: 90%;
+    }
+
+    footer {
+        font-size: 14px;
+        text-align: center;
+        padding: 20px;
+    }
+}
