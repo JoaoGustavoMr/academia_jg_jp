@@ -72,28 +72,45 @@ $resultado_aluno = $conexao->query($sql_alunos);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($resultado_aluno->num_rows > 0) {
-                            while ($linha = $resultado_aluno->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($linha['aluno_nome']) . "</td>";
-                                echo "<td>" . htmlspecialchars($linha['aluno_cpf']) . "</td>";
-                                echo "<td>" . htmlspecialchars($linha['aluno_endereco']) . "</td>";
-                                echo "<td>" . htmlspecialchars($linha['aluno_telefone']) . "</td>";
-                                echo "<td>" . htmlspecialchars($linha['aluno_email']) . "</td>";
-                                 // Verifica se o tipo de usuário é "instrutor"
-                                if ($_SESSION['tipo_usuario'] == 'Instrutor') {
-                                    echo "<td>
-                                            <button class='editar-btn' data-id='" . $linha['aluno_cod'] . "' data-nome='" . htmlspecialchars($linha['aluno_nome']) . "' data-cpf='" . htmlspecialchars($linha['aluno_cpf']) . "' data-endereco='" . htmlspecialchars($linha['aluno_endereco']) . "' data-telefone='" . htmlspecialchars($linha['aluno_telefone']) . "' data-email='" . htmlspecialchars($linha['aluno_email']) . "'>Editar</button>
-                                            <button class='excluir-btn' data-id='" . $linha['aluno_cod'] . "'>Excluir</button>
-                                    </td>";
-                                } else {
-                                     echo "<td>Sem permissão</td>";
-                                }
-                            }
-                        } else {
-                            echo "<tr><td colspan='6'>Nenhum aluno encontrado.</td></tr>";
-                        } ?>
-                    </tbody>
+    <?php if ($resultado_aluno->num_rows > 0) {
+        while ($linha = $resultado_aluno->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($linha['aluno_nome']) . "</td>";
+            echo "<td>" . htmlspecialchars($linha['aluno_cpf']) . "</td>";
+            echo "<td>" . htmlspecialchars($linha['aluno_endereco']) . "</td>";
+            echo "<td>" . htmlspecialchars($linha['aluno_telefone']) . "</td>";
+            echo "<td>" . htmlspecialchars($linha['aluno_email']) . "</td>";
+
+            echo "<td>";
+
+            if ($_SESSION['tipo_usuario'] == 'Instrutor') {
+                echo "<button class='editar-btn' 
+                        data-id='" . $linha['aluno_cod'] . "' 
+                        data-nome='" . htmlspecialchars($linha['aluno_nome']) . "' 
+                        data-endereco='" . htmlspecialchars($linha['aluno_endereco']) . "' 
+                        data-telefone='" . htmlspecialchars($linha['aluno_telefone']) . "'>Editar</button>";
+
+                echo "<button class='excluir-btn' data-id='" . $linha['aluno_cod'] . "'>Excluir</button>";
+
+            } 
+            elseif ($_SESSION['email_sessao'] == $linha['aluno_email']) {
+                echo "<button class='editar-btn' 
+                        data-id='" . $linha['aluno_cod'] . "' 
+                        data-nome='" . htmlspecialchars($linha['aluno_nome']) . "' 
+                        data-endereco='" . htmlspecialchars($linha['aluno_endereco']) . "' 
+                        data-telefone='" . htmlspecialchars($linha['aluno_telefone']) . "'>Editar</button>";
+            } 
+            else {
+                echo "Sem permissão";
+            }
+
+            echo "</td></tr>";
+        }
+    } else {
+        echo "<tr><td colspan='6'>Nenhum aluno encontrado.</td></tr>";
+    } ?>
+</tbody>
+
                 </table>
             </div>
         </div>
