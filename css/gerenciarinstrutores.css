@@ -293,40 +293,35 @@ button:focus {
     margin-top: 100px;
     margin-left: 100px;
 }
-/* Estilo para o modal de criar novo instrutor */
 #modal-criar {
-    display: none; /* Inicialmente escondido */
-    position: fixed; /* Modal fixado na tela */
-    z-index: 1000; /* Coloca o modal acima de outros elementos */
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
     left: 0;
     top: 0;
-    width: 100%; /* Ocupa toda a largura da tela */
-    height: 100%; /* Ocupa toda a altura da tela */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
 }
-
-/* Conteúdo do modal */
 #modal-criar .modal-content {
     background-color: #fff;
-    margin: auto; /* Centraliza o modal */
+    margin: auto; 
     padding: 15px;
     border-radius: 8px;
-    width: 70%; /* Menor largura */
-    max-width: 500px; /* Limita o tamanho máximo */
+    width: 70%; 
+    max-width: 500px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
-    top: 50%; /* Posiciona no meio verticalmente */
-    left: 50%; /* Posiciona no meio horizontalmente */
-    transform: translate(-50%, -50%); /* Ajuste para centralização exata */
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
 }
-
-/* Fechar o modal (×) */
 #modal-criar .close {
     color: #aaa;
-    font-size: 24px; /* Tamanho do ícone de fechar menor */
+    font-size: 24px; 
     font-weight: bold;
     position: absolute;
-    right: 15px; /* Ajustado para ficar mais próximo da borda */
+    right: 15px; 
     top: 15px;
     cursor: pointer;
 }
@@ -410,7 +405,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 430px) { 
+/* @media (max-width: 430px) { 
 
     nav {
         height: 300px;
@@ -470,30 +465,173 @@ footer a:hover {
         text-align: center;
         font-size: 20px;
     }
-
-    /* main #textos h1 {
-        font-size: 32px;
-        margin-left: -40px;
-    }
-
-    main #textos h2 {
-        flex-wrap: wrap;
-        width: 30%;
-        margin-left: -40px;
-    }
-
-    #container {
-        width: 80%;
-        margin-left: -30px;
-    }
-
-    #container2{
-        margin-top: 80px;
-        display: flex;
-        flex-direction: column;
-    } */
-
     footer {
         margin-top: 800px;
+    }
+} */
+
+/* ===================== RESPONSIVIDADE ===================== */
+
+/* Até 1200px (ajustes leves) */
+@media screen and (max-width: 1200px) {
+    nav {
+        gap: 50px;
+        padding: 0 20px;
+    }
+    nav ul {
+        gap: 50px;
+    }
+    main #textos {
+        width: 600px;
+    }
+    main #aulas {
+        justify-content: center;
+    }
+}
+
+/* Até 992px (tablets e telas médias) */
+@media screen and (max-width: 992px) {
+    nav {
+        gap: 30px;
+    }
+    nav ul {
+        gap: 30px;
+        font-size: 16px;
+    }
+    main {
+        flex-direction: column; /* Agora os itens ficam um em cima do outro */
+        gap: 30px;
+        padding: 20px;
+        align-items: center;
+        text-align: center;
+    }
+    main #textos {
+        width: 90%;
+    }
+    main #aulas {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+    .aula {
+        width: 80%;
+    }
+    #container2 {
+        flex-direction: column; /* Alinha os elementos um em cima do outro */
+        text-align: center;
+        align-items: center;
+    }
+    #container2 img {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 90%;
+        max-width: 500px;
+    }
+}
+
+/* Até 768px (celulares e telas pequenas) */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    nav #perfil-logout {
+        flex-direction: column;
+        gap: 10px;
+    }
+    main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    main #textos {
+        text-align: center;
+        width: 90%;
+    }
+    main #textos h1 {
+        font-size: 32px;
+    }
+    main #textos p {
+        font-size: 18px;
+    }
+    .aula {
+        width: 90%;
+    }
+    .modal-content {
+        width: 80%;
+    }
+    #adicionar-aula {
+        width: 90%;
+    }
+    #container2 {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    #container2 img {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Até 576px (celulares menores) */
+@media screen and (max-width: 576px) {
+    nav #logo-acad {
+        width: 130px;
+    }
+    nav ul {
+        font-size: 14px;
+    }
+    main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    main #textos h1 {
+        font-size: 28px;
+    }
+    main #textos p {
+        font-size: 16px;
+    }
+    .aula {
+        width: 100%;
+    }
+    .modal-content {
+        width: 95%;
+    }
+    footer {
+        font-size: 13px;
+        padding: 15px;
+    }
+    #container2 {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    #container2 img {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* Ajustes para evitar cortes de conteúdo */
+@media screen and (max-width: 768px) {
+    main {
+        min-height: calc(100vh - 160px);
+        padding: 50px 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    main {
+        min-height: calc(100vh - 140px);
+        padding: 60px 15px;
     }
 }

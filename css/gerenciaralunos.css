@@ -343,7 +343,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-
+/* 
 @media (max-width: 430px) { 
 
     nav {
@@ -405,4 +405,115 @@ footer a:hover {
     footer {
         margin-top: 800px;
     }
+} */
+ /* Responsivo para telas médias (até 1200px) */
+@media screen and (max-width: 1200px) {
+    nav {
+        gap: 50px;
+        padding: 0 20px;
+    }
+    nav ul {
+        gap: 50px;
+    }
+    main #textos {
+        width: 80%;
+    }
+    .tabela-container {
+        height: auto;
+    }
 }
+
+/* Responsivo para telas menores (até 992px) */
+@media screen and (max-width: 992px) {
+    nav {
+        gap: 30px;
+    }
+    nav ul {
+        gap: 30px;
+        font-size: 16px;
+    }
+    main {
+        gap: 30px;
+        padding: 20px;
+    }
+    main #textos {
+        width: 90%;
+        text-align: center;
+    }
+    .tabela-container {
+        overflow-x: auto; /* Permite rolagem horizontal se necessário */
+    }
+    table {
+        width: 100%;
+    }
+    .modal-content {
+        width: 80%;
+    }
+}
+
+/* Responsivo para tablets (até 768px) */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    nav #perfil-logout {
+        flex-direction: column;
+        gap: 10px;
+    }
+    main {
+        min-height: calc(100vh - 160px); 
+        padding: 50px 20px;
+    }
+    main #textos h1 {
+        font-size: 32px;
+    }
+    main #textos p {
+        font-size: 18px;
+    }
+    .modal-content {
+        width: 85%;
+    }
+    footer {
+        text-align: center;
+        padding: 20px;
+    }
+}
+
+/* Responsivo para celulares (até 576px) */
+@media screen and (max-width: 576px) {
+    nav #logo-acad {
+        width: 130px;
+    }
+    nav ul {
+        font-size: 14px;
+    }
+    main {
+        min-height: calc(100vh - 140px);
+        padding: 60px 15px;
+    }
+    main #textos h1 {
+        font-size: 28px;
+    }
+    main #textos p {
+        font-size: 16px;
+    }
+    .tabela-container {
+        overflow-x: auto;
+    }
+    .modal-content {
+        width: 95%;
+    }
+    footer {
+        font-size: 13px;
+        padding: 15px;
+    }
+}
+

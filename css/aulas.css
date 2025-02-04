@@ -95,7 +95,8 @@ nav ul li a:hover, nav #entrar:hover {
     color: rgb(255, 255, 255);
 }
 main {
-    height: calc(100vh - 200px);
+    min-height: calc(100vh - 180px); /* Ajusta altura mínima para evitar sobreposição */
+    padding: 40px 20px; /* Adiciona espaçamento interno */
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -314,3 +315,118 @@ footer a:hover {
 /* main #banner-acad {
     width: 100%;
 } */
+/* 📱 Responsividade para telas menores */
+@media screen and (max-width: 1200px) {
+    nav {
+        gap: 50px;
+        padding: 0 20px;
+    }
+    nav ul {
+        gap: 50px;
+    }
+    main #textos {
+        width: 600px;
+    }
+    main #aulas {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    nav {
+        gap: 30px;
+    }
+    nav ul {
+        gap: 30px;
+        font-size: 16px;
+    }
+    main {
+        gap: 30px;
+        padding: 20px;
+    }
+    main #textos {
+        width: 90%;
+    }
+    main #aulas {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+    .aula {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    nav #perfil-logout {
+        flex-direction: column;
+        gap: 10px;
+    }
+    main #textos {
+        text-align: center;
+    }
+    main #textos h1 {
+        font-size: 32px;
+    }
+    main #textos p {
+        font-size: 18px;
+    }
+    .aula {
+        width: 90%;
+    }
+    .modal-content {
+        width: 80%;
+    }
+    #adicionar-aula {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    nav #logo-acad {
+        width: 130px;
+    }
+    nav ul {
+        font-size: 14px;
+    }
+    main #textos h1 {
+        font-size: 28px;
+    }
+    main #textos p {
+        font-size: 16px;
+    }
+    .aula {
+        width: 100%;
+    }
+    .modal-content {
+        width: 95%;
+    }
+    footer {
+        font-size: 13px;
+        padding: 15px;
+    }
+}
+@media screen and (max-width: 768px) {
+    main {
+        min-height: calc(100vh - 160px); /* Ajusta para telas menores */
+        padding: 50px 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    main {
+        min-height: calc(100vh - 140px);
+        padding: 60px 15px;
+    }
+}
